@@ -5,9 +5,10 @@ import com.example.JPAApplication.Configuration.TM_Programmatic_approach1;
 import com.example.JPAApplication.Model.Applicant;
 import com.example.JPAApplication.Model.Application;
 import com.example.JPAApplication.Model.Resume;
-import com.example.JPAApplication.Repo.ApplicantReso;
+import com.example.JPAApplication.Repo.ApplicantRepo;
 import com.example.JPAApplication.Repo.ResumeRepo;
 
+import com.example.JPAApplication.Service.ApplicantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class CommonController {
 
     @Autowired
-    ApplicantReso applicantRepo;
+    ApplicantRepo applicantRepo;
 
     @Autowired
     ResumeRepo resumeRepo;
@@ -29,9 +30,12 @@ public class CommonController {
     @Autowired
     TM_Programmatic_approach1 tmProgrammaticApproach1;
 
+    @Autowired
+    ApplicantServiceImpl ApplicantServiceImpl;
+
     @GetMapping("/getAllApplicants")
     public List<Applicant> getAllApplicants(){
-        return applicantRepo.findAll();
+        return ApplicantServiceImpl.findAll();
     }
 
     @PostMapping("/saveApplicant")
@@ -77,8 +81,5 @@ public class CommonController {
     }
     private void updateQuery1() {
     }
-
-
-
 
 }
