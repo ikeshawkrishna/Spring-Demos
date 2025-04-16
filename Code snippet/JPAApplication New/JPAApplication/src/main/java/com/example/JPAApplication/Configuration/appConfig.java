@@ -16,7 +16,6 @@ public class appConfig {
 
     //Explicitly defining the Transaction manager. for Declarative Approach.
     @Bean
-    @Primary
     public DataSource setDataSource(){
         DriverManagerDataSource config = new DriverManagerDataSource();
         config.setDriverClassName("org.h2.Driver");
@@ -27,7 +26,6 @@ public class appConfig {
     }
 
     @Bean
-    @Primary
     public PlatformTransactionManager transactionManager(DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);
     }
