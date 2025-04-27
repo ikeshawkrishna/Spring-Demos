@@ -21,6 +21,6 @@ public class MyUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found 404");
         }
 
-        return new UserPrincipal(user);
+        return user;
     }
 }

@@ -1,8 +1,6 @@
 package com.example.Security.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +12,6 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table
 public class Users implements UserDetails {
 
     private Long id;
@@ -70,5 +67,13 @@ public class Users implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
