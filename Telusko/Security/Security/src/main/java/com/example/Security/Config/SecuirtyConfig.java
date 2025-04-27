@@ -37,6 +37,8 @@ public class SecuirtyConfig {
 
         //To use formlogin
 //        http.formLogin(Customizer.withDefaults());
+
+        //To use httpbasic
         http.httpBasic(Customizer.withDefaults());
 
         //To make session Stateless
