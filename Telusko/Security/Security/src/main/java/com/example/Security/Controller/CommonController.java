@@ -4,6 +4,9 @@ import com.example.Security.Entity.Users;
 import com.example.Security.Model.Student;
 import com.example.Security.Service.JwtService;
 import com.example.Security.Service.UserRegistryService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Id;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@Tag(name = "Student Controller", description = "Handles student-related operations")
 public class CommonController {
 
     @Autowired
@@ -42,11 +46,13 @@ public class CommonController {
     }
 
     @GetMapping("getStudent")
+    @Operation(summary = "Fetch all students")
     public List<Student> getStudents() {
         return studentList;
     }
 
     @PostMapping("addStudent")
+    @Operation(summary = "To add a student")
     public void addStudents(@RequestBody Student student) {
         studentList.add(student);
     }
@@ -57,15 +63,18 @@ public class CommonController {
     }
 
     @PostMapping("userRegistry")
+    @Operation(summary = "Register the User")
     public Users userRegistry(@RequestBody Users user) {
         return userRegistryService.userRegistry(user);
     }
 
     @PostMapping("login")
+    @Operation(summary = "Generates the JWT Token")
     public String login(@RequestBody Users user) {
 
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+        System.out.println("authendition object >>> " + authentication);
 
         if (authentication.isAuthenticated()) {
             return jwtService.generateToken(user.getUsername());
