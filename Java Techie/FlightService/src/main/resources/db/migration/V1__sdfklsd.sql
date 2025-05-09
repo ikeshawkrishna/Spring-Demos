@@ -1,0 +1,1 @@
+alter table passenger_info add asdassad VARCHAR(21)

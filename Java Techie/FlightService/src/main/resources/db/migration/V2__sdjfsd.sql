@@ -1,0 +1,1 @@
+alter table passenger_info add gender  VARCHAR(10) DEFAULT 'NA';
