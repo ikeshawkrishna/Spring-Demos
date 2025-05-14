@@ -1,9 +1,7 @@
 package com.project.Student.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 

@@ -7,10 +7,7 @@ import com.example.FlightService.Repo.PaymentInfoRepo;
 import com.example.FlightService.Util.PaymentUtil;
 import com.example.FlightService.dto.FlightBookingAcknowledgement;
 import com.example.FlightService.dto.FlightBookingRequest;
-import jakarta.annotation.PostConstruct;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +25,6 @@ public class FlightBookingService {
 
     @Autowired
     private PaymentUtil paymentUtil;
-
-    public FlightBookingService(){
-
-    }
 
     @Transactional(propagation = Propagation.REQUIRED)
     public FlightBookingAcknowledgement bookFlightTicket(FlightBookingRequest request){
