@@ -4,10 +4,13 @@ import com.project.Student.Exceptions.StudentNotFound;
 import com.project.Student.Model.LibraryBooks;
 import com.project.Student.Model.Student;
 import com.project.Student.Repo.StudentRepo;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentService {
@@ -24,6 +27,7 @@ public class StudentService {
         return studentRepo.save(student);
     }
 
+    @Cacheable("students")
     public List<Student> getAllStudents() {
         return studentRepo.findAll();
     }

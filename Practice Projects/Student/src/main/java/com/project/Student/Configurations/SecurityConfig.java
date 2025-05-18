@@ -27,7 +27,10 @@ public class SecurityConfig {
         return http
                 .csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(customizer -> customizer
-                        .requestMatchers("/userRegistry", "/userLogin").permitAll()
+                        .requestMatchers("/userRegistry",
+                                "/userLogin",
+                                "/swagger-ui/**",
+                                "swagger-ui.html").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

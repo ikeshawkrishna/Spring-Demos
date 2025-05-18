@@ -35,11 +35,12 @@ public class SecuirtyConfig {
         http.authorizeHttpRequests(request ->
                 request
                         .requestMatchers(
-                                "userRegistry",
-                                "login",
+                                "/userRegistry",
+                                "/login",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
-                                "/v3/api-docs/**").permitAll()
+                                "/v3/api-docs/**"
+                        ).permitAll()
                         .anyRequest().authenticated());
 
         //To use formlogin
@@ -70,29 +71,4 @@ public class SecuirtyConfig {
     public AuthenticationManager authManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
-
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//
-//        UserDetails user = User
-//                .withDefaultPasswordEncoder()
-//                .username("keshaw")
-//                .password("k@123")
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails admin = User
-//                .withDefaultPasswordEncoder()
-//                .username("admin")
-//                .password("k@123")
-//                .roles("ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user,admin);
-//    }
-
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//    }
 }

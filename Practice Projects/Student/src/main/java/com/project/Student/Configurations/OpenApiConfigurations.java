@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.security.SecuritySchemes;
 import io.swagger.v3.oas.annotations.servers.Server;
@@ -36,16 +38,17 @@ import org.springframework.context.annotation.Configuration;
                 )
         },
         security = {
+                @SecurityRequirement(name = "basicAuth")
         }
 )
 @SecuritySchemes(
         {
                 @SecurityScheme(
                         type = SecuritySchemeType.HTTP,
+                        in = SecuritySchemeIn.HEADER,
                         name = "basicAuth",
                         description = "For basic authentication",
-                        scheme = "basic",
-                        in = SecuritySchemeIn.HEADER
+                        scheme = "basic"
                 )
         }
 )

@@ -4,6 +4,8 @@ import com.project.Student.Exceptions.ErrorResponse;
 import com.project.Student.Model.Student;
 import com.project.Student.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ public class StudentController {
     public Student addStudent(@RequestBody Student student){
         return studentService.addStudent(student);
     }
+
 
     @GetMapping("/getAllStudents")
     public ResponseEntity<?> getAllStudents(){

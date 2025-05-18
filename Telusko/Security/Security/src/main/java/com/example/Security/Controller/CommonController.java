@@ -5,6 +5,7 @@ import com.example.Security.Model.Student;
 import com.example.Security.Service.JwtService;
 import com.example.Security.Service.UserRegistryService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+@SecurityRequirement(name = "basicAuth")
 @RestController
 @Tag(name = "Student Controller", description = "Handles student-related operations")
 public class CommonController {

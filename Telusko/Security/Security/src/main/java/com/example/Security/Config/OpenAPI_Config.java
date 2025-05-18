@@ -36,9 +36,7 @@ import org.springframework.context.annotation.Configuration;
                         description = "PROD Environment",
                         url = "http://localhost:8080/PROD"
                 )
-        },
-
-        security = {
+        }, security = {
                 @SecurityRequirement(name = "basicAuth")
         }
 
