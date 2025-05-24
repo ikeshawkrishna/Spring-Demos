@@ -10,12 +10,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class BookService {
@@ -29,9 +29,11 @@ public class BookService {
     @Autowired
     RedisService redisService;
 
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
     @PostConstruct
-    public void loadMasterData() {
-        // Example: Add some static data
+    public void BookServicePostContruct() {
         try {
             Map<String, Object> studentTypes = new HashMap<>();
             studentTypes.put("UG", "Undergraduate");
@@ -51,20 +53,41 @@ public class BookService {
 
             System.out.println(redisTemplate.opsForValue().get("studentTypesvalue"));
 
+            loadROIMasterData();
+            List<Map<String, Object>> olist = (List<Map<String, Object>>) redisTemplate.opsForValue().get("roi:master");
+            System.out.println("oooooo  >>> " + olist);
+
+            olist.forEach((element) -> {
+//                if(element.get("scheme").toString().equalsIgnoreCase("pmvk")){
+//                    int tenormin = (int) element.get("tenormin");
+//                    int tenormax = (int) element.get("tenormax");
+//                    System.out.println("tenormin >> " + tenormin + " tenormax >> " + tenormax);
+//                }
+            });
+
+            System.out.println(redisTemplate.opsForValue().get("Book"));
+
+
         } catch (Exception e) {
-            System.out.println("Exception occurred......");
+            e.printStackTrace();
         }
 
     }
 
+    private void loadROIMasterData(){
+        String sql = "SELECT * FROM dbo.msme_roi_master";
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sql);
+        redisTemplate.opsForValue().set("roi:master",maps);
+    }
 
-//    @Cacheable(key = "#id",value = "booksvalue")
+
+//    @Cacheable(value = "booksvalue")
     public ResponseEntity<?> getAllBooks() {
         List<Book> all = bookRepo.findAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
-    @Cacheable(key = "#id", value = "Book")
+    @Cacheable(key = "#id", value = "Bookable")
     public Book findBookById(Long id){
         Book byId = bookRepo.findById(id).orElseThrow(() -> new RuntimeException());
         return byId;
@@ -75,7 +98,7 @@ public class BookService {
         return save;
     }
 
-    @CachePut(key = "#id",value = "Book")
+    @CachePut(key = "#id",value = "Bookable")
     public Book updateBook(Book book, Long id) {
         Book book1 = bookRepo.findById(id).orElseThrow(() -> new RuntimeException());
         book.setId(id);
@@ -83,9 +106,11 @@ public class BookService {
         return save;
     }
 
-    @CacheEvict(key = "#id",value = "Book")
+    @CacheEvict(key = "#book.id",value = "Bookable")
     public String deleteBook(Book book) {
         bookRepo.delete(book);
         return "Success";
     }
+
+
 }

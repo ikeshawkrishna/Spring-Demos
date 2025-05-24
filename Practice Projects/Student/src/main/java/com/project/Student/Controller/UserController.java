@@ -4,7 +4,9 @@ import com.project.Student.Exceptions.ErrorResponse;
 import com.project.Student.Model.User;
 import com.project.Student.Service.JWTService;
 import com.project.Student.Service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,5 +52,12 @@ public class UserController {
         } else {
             return "Failure";
         }
+    }
+
+    @GetMapping("/generateOTP")
+    public String generateOTP(HttpServletRequest request){
+        String session = request.getSession().getId();
+        System.out.println("session >> " + session);
+        return userService.generateOTP(session);
     }
 }

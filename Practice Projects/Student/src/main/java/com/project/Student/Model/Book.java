@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @ToString
-public class Book implements Serializable {
+public class Book implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

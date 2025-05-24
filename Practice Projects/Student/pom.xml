@@ -130,6 +130,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>student-service</finalName>
         <plugins>
 
             <plugin>

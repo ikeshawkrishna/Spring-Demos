@@ -13,12 +13,10 @@ import java.util.Optional;
 @Service
 public class RedisService {
 
-    private final CacheManager cacheManager;
     private final RedisTemplate<String, Object> redisTemplate;
 
     public RedisService(RedisTemplate<String, Object> redisTemplate, CacheManager cacheManager){
         this.redisTemplate = redisTemplate;
-        this.cacheManager = cacheManager;
     }
 
     public void saveDataToRedis(String key, Object value){
@@ -26,7 +24,9 @@ public class RedisService {
     }
 
     public Object getDataFromRedis(String key){
-        return redisTemplate.opsForValue().get(key);
+        Object object = redisTemplate.opsForValue().get(key);
+        System.out.println(object);
+        return object;
     }
 
     public void deleteDataFromRedis(String key){
