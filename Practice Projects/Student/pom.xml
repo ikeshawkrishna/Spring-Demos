@@ -115,6 +115,12 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <!--	Spring Redis Ends	-->
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

@@ -1,8 +1,10 @@
 package com.project.Student.Service;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.project.Student.Model.Book;
 import com.project.Student.Repo.BookRepo;
 import jakarta.annotation.PostConstruct;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -110,6 +112,32 @@ public class BookService {
     public String deleteBook(Book book) {
         bookRepo.delete(book);
         return "Success";
+    }
+
+
+    public JSONObject validateHeader(JSONObject inputHeader){
+        JSONObject jobj = new JSONObject();
+        try{
+            Map<String, String> headers = new HashMap<>();
+            headers.put("1","ClientId");
+            headers.put("2","Clientname");
+            headers.put("3","secretkey");
+            headers.put("4","token");
+
+            for(Map.Entry<String, String> map : headers.entrySet()){
+                if(inputHeader.getString(map.getValue().toString()).isEmpty()){
+                    jobj.put("status","Failed");
+                    return jobj;
+                }
+            }
+
+            jobj.put("status","Success");
+
+        } catch (Exception e){
+            e.printStackTrace();
+            jobj.put("status","Exception");
+        }
+        return jobj;
     }
 
 
