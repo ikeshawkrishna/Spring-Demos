@@ -15,20 +15,20 @@ import javax.sql.DataSource;
 public class appConfig {
 
     //Explicitly defining the Transaction manager. for Declarative Approach.
-    @Bean
-    public DataSource setDataSource(){
-        DriverManagerDataSource config = new DriverManagerDataSource();
-        config.setDriverClassName("org.h2.Driver");
-        config.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
-        config.setUsername("sa");
-        config.setPassword("1234");
-        return config;
-    }
+//    @Bean
+//    public DataSource setDataSource(){
+//        DriverManagerDataSource config = new DriverManagerDataSource();
+//        config.setDriverClassName("org.h2.Driver");
+//        config.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
+//        config.setUsername("sa");
+//        config.setPassword("1234");
+//        return config;
+//    }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource){
-        return new DataSourceTransactionManager(dataSource);
-    }
+//    @Bean
+//    public PlatformTransactionManager transactionManager(DataSource dataSource){
+//        return new DataSourceTransactionManager(dataSource);
+//    }
 
 
 }

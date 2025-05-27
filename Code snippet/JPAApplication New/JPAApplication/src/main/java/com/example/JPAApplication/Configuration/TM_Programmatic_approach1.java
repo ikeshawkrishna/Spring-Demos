@@ -17,10 +17,10 @@ public class TM_Programmatic_approach1 {
         TransactionStatus status = platformTransactionManager.getTransaction(null);
         try{
             transactionalWork.run();
-            if(true){
-                System.out.println("Inside exception");
-                throw new Exception("User data is missing!");
-            }
+//            if(true){
+//                System.out.println("Inside exception");
+//                throw new Exception("User data is missing!");
+//            }
             platformTransactionManager.commit(status);
             return true;
         } catch (Exception e){
