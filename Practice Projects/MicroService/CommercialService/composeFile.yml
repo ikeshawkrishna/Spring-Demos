@@ -1,0 +1,40 @@
+version : "3.7"
+
+services:
+  commercial-service:
+    build:
+      context: C:\Users\keshaw.at\Downloads\CommercialService
+    ports:
+      - "8090:8090"
+    networks:
+      - commercial-project-network
+
+  postgresdb:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: DemoUser
+      POSTGRES_PASSWORD: 0000
+      POSTGRES_DB: SpringDemo
+    ports:
+      - 5433:5432
+    networks:
+      - commercial-project-network
+    volumes:
+      - postgres-demo-volume:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    ports:
+      - 8080:80
+    networks:
+      - commercial-project-network
+
+networks:
+  commercial-project-network:
+    driver: bridge
+
+volumes:
+  postgres-demo-volume:

@@ -57,5 +57,6 @@ class InterfaceDemo extends abstractDemo{
         obj.show();
         InterfaceDemo.print();
         A.print();
+
     }
 }
