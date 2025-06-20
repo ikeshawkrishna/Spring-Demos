@@ -10,6 +10,7 @@ import com.example.JPAApplication.Repo.ResumeRepo;
 
 import com.example.JPAApplication.Service.ApplicantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,17 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 public class CommonController {
+
+    public CommonController(){
+        System.out.println("CommonController called");
+    }
+
+    @Value("${db.name}")
+    private String dbname;
+
+    public String getDbname(){
+        return this.dbname;
+    }
 
     @Autowired
     ApplicantRepo applicantRepo;

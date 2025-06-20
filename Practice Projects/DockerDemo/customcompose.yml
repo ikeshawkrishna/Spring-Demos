@@ -1,0 +1,40 @@
+version : "3.7"
+
+services:
+  app:
+    build:
+      context: C:\Users\keshaw.at\Downloads\DockerDemo
+    ports:
+      - 8090:8090
+    networks:
+      - docker-demo-network
+
+  postgresdb:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: keshaw
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: SpringDemo
+    ports:
+      - 5433:5432
+    networks:
+      - docker-demo-network
+    volumes:
+      - postgres-demo-volume:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    ports:
+      - 8080:80
+    networks:
+      - docker-demo-network
+
+networks:
+  docker-demo-network:
+    driver: bridge
+
+volumes:
+  postgres-demo-volume:

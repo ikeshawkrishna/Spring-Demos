@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class CompletableFutureExample {
     private static final ExecutorService executor = Executors.newFixedThreadPool(5);
 
+
+
     public static void main(String[] args) throws Exception {
         String pan = "ABCDE1234F";
-
 
         // 1. PAN to CIF
         CompletableFuture<String> cifFuture = CompletableFuture.supplyAsync(() -> {

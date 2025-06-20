@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,13 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.*;
-import java.util.function.Function;
 
 
 @Service
 public class JwtService {
 
     public String generateToken(String username) {
+
         Map<String, Objects> claims = new HashMap<>();
         return Jwts.builder()
                 .setClaims(claims)
@@ -35,6 +36,7 @@ public class JwtService {
     }
 
     public String generateSecretKey() {
+
         try {
             KeyGenerator keygen = KeyGenerator.getInstance("HmacSHA256");
             SecretKey secretKey = keygen.generateKey();

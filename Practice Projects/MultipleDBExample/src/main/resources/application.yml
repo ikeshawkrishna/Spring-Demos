@@ -1,0 +1,31 @@
+# Application name
+spring:
+  application:
+    name: MultipleDBExample
+
+  # Show SQL queries
+  jpa:
+    show-sql: true
+
+  # Primary datasource
+  datasource:
+    primary:
+      jdbc-url: 'jdbc:sqlserver://localhost;databaseName=SpringDemo;encrypt=true;trustServerCertificate=true;'
+      username: 'DemoUser'
+      password: '0000'
+      driver-class-name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+
+    # Secondary datasource
+    secondary:
+      jdbc-url: 'jdbc:sqlserver://localhost;databaseName=SpringDemo_09052025;encrypt=true;trustServerCertificate=true;'
+      username: 'DemoUser'
+      password: '0000'
+      driver-class-name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+
+  # Exclude default datasource auto configuration (when defining manually)
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+# Server port
+server:
+  port: 8080
