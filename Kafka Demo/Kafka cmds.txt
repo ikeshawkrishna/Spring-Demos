@@ -1,0 +1,19 @@
+kafka version used : 2.12-3.4.0
+Steps to follow :
+	1. Start zookeeper
+	2. Start kafka server
+	3. create a topic
+		--> specify partision count
+		--> replication factor
+		
+default ports:
+	zookeeper : 2181
+	kafka server : 9092
+	
+starting zookeeper --> K:\Keshaw\Softwares\kafka_2.12-3.4.0\bin\windows\zookeeper-server-start.bat K:\Keshaw\Softwares\kafka_2.12-3.4.0\config\zookeeper.properties
+
+starting kafka server --> K:\Keshaw\Softwares\kafka_2.12-3.4.0\bin\windows\kafka-server-start.bat K:\Keshaw\Softwares\kafka_2.12-3.4.0\config\server.properties
+
+creating topic --> K:\Keshaw\Softwares\kafka_2.12-3.4.0\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --topic demo-topic --partitions 3 --replication-factor 1
+
+list topics -->  .\bin\windows\kafka-topics.bat  --bootstrap-server localhost:9092 --list
