@@ -30,5 +30,9 @@ Terminal Operations :
 	7. Collectors.groupingBy : 
 		--> takes Function as arg and group the element based on it
 		--> takes function(key) and collector(value) as args
+		--> take function, downstream, collector as arg
+	8. Collectors.maxBy:--> take comparator Interface as arg and return the value (can be replaceble of max())
+	9. Collectors.averagingDouble--> take function as arg and return average value
+	10. Collectors.counting--> return occurance of the element
 	
 	
