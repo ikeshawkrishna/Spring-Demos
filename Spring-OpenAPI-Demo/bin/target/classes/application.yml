@@ -1,0 +1,15 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: SpringOpenAI
+  ai:
+    openai:
+      api-key: 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
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.6
+
+
