@@ -19,6 +19,7 @@ public class OpenAIController {
 		this.service = service;
 	}
 	
+	
 	@GetMapping("/ask/{message}")
 	public String AskAI(@PathVariable String message) {
 		return service.AskAI(message);
