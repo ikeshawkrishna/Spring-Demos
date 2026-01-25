@@ -1,0 +1,12 @@
+server:
+  port: 9192
+spring:
+  application:
+    name: OpenAI-MessageRoles_and_Prompting
+  ai:
+    openai:
+      api-key: ${openAI_Key}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.6
