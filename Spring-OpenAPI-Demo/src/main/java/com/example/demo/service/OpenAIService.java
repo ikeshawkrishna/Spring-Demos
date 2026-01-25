@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class OpenAIService {
 
 	@Autowired
-	private OpenAiChatModel openAiChatModel;
-	
-	public String AskAI(@PathVariable String message) {
-		return openAiChatModel
-			.call(message);
+	private OpenAiChatModel openAiChatModel;	
+
+	public String AskAI(String message) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
