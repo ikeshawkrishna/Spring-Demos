@@ -1,21 +1,18 @@
 package com.example.demo.service;
 
-import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class OpenAIService {
+
+	@Autowired
+	private OpenAiChatModel openAiChatModel;
 	
-	private final ChatClient chatClient;
-	
-	public OpenAIService(ChatClient.Builder builder) {
-		chatClient = builder.build();
+	public String AskAI(@PathVariable String message) {
+		return openAiChatModel
+			.call(message);
 	}
-
-	public String callService(String prompt) {
-		return chatClient
-                .prompt(prompt)
-                .call()
-                .content();	}
-
 }
