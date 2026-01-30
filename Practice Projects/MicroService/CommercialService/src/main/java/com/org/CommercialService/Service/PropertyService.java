@@ -8,15 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PropertyService {
 
-    private final PropertyFeign propertyFeign;
+    private PropertyFeign propertyFeign;
 
-    @Autowired
-    public PropertyService(PropertyFeign propertyFeign){
-        this.propertyFeign = propertyFeign;
-    }
+//    @Autowired
+//    public PropertyService(PropertyFeign propertyFeign){
+//        this.propertyFeign = propertyFeign;
+//    }
 
     public ResponseEntity<?> getPropertyByOwnerId(Long ownerId) {
-        return propertyFeign.getPropertyByOwnerId(ownerId);
+//        return propertyFeign.getPropertyByOwnerId(ownerId);
+        return null;
     }
 
 

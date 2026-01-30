@@ -6,7 +6,7 @@ import com.org.CommercialService.DTO.Response.OwnerResponseDTO;
 import com.org.CommercialService.Entity.Owner;
 import com.org.CommercialService.Entity.OwnerAddressDetails;
 import com.org.CommercialService.Exception.UserAlreadyExist;
-import com.org.CommercialService.Repository.OwnerRepository;
+//import com.org.CommercialService.Repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,16 +17,16 @@ import java.util.stream.Collectors;
 @Service
 public class OwnerService {
 
-    @Autowired
-    OwnerRepository ownerRepository;
+//    @Autowired
+//    OwnerRepository ownerRepository;
 
     public OwnerResponseDTO registerOwner(OwnerRequestDTO ownerRequestDTO) {
         String phone = ownerRequestDTO.getPhone();
         String email = ownerRequestDTO.getEmail();
-        int ownerCount = ownerRepository.findExistingUser(phone, email);
-        if(ownerCount != 0){
-            throw new UserAlreadyExist("User is already exist");
-        }
+//        int ownerCount = ownerRepository.findExistingUser(phone, email);
+//        if(ownerCount != 0){
+//            throw new UserAlreadyExist("User is already exist");
+//        }
 
         Owner owner = new Owner();
         owner.setName(ownerRequestDTO.getName());
@@ -52,7 +52,8 @@ public class OwnerService {
         owner.setOwnerAddressDetails(addressList);
 
 
-        Owner savedOwner = ownerRepository.save(owner);
+//        Owner savedOwner = ownerRepository.save(owner);
+        Owner savedOwner = owner;
         System.out.println("savedOwner >> " + savedOwner);
 
         return new OwnerResponseDTO().mapOwnerResponseDTO(savedOwner);

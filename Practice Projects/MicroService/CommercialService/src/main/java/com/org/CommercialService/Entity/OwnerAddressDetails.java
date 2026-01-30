@@ -1,20 +1,20 @@
 package com.org.CommercialService.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity(name = "OwnerAddressDetails")
+//@Entity(name = "OwnerAddressDetails")
 @Data
 @NoArgsConstructor
 @ToString
 public class OwnerAddressDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "owner_address_seq")
-    @SequenceGenerator(name = "owner_address_seq", sequenceName = "owner_address_seq", initialValue = 1, allocationSize = 1)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "owner_address_seq")
+//    @SequenceGenerator(name = "owner_address_seq", sequenceName = "owner_address_seq", initialValue = 1, allocationSize = 1)
     private Long id;
 
     private String addressType;
@@ -26,8 +26,8 @@ public class OwnerAddressDetails {
 
     @ToString.Exclude
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+//    @ManyToOne
+//    @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
 
     public OwnerAddressDetails(String addressType, String addressLine1, String addressLine2, String city, String state, String country, Owner owner) {
