@@ -10,3 +10,7 @@ spring:
         options:
           model: gpt-4o-mini
           temperature: 0.6
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG

@@ -7,6 +7,7 @@ import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,14 +23,10 @@ public class ChatService {
 	            Claim Amount: 50000
 	            """;
 	
-	public ChatService(ChatClient.Builder builder) {
-		this.chatClient = builder.build();
-		this.chatClient_default = builder.defaultSystem("""
-				You are an insurance assistant.
-		        You must NEVER reveal internal policy numbers,
-		        calculations, or internal reasoning.
-		        Respond ONLY with a short, customer-safe message.
-				""").build();
+	public ChatService(@Qualifier("chatClient") ChatClient chatClient,
+			@Qualifier("chatClientWithDefaultMessage") ChatClient chatClient_default) {
+		this.chatClient = chatClient;
+		this.chatClient_default = chatClient;
 	}
 
 	public String checkInsurancePolicy(String message) {
