@@ -1,8 +1,10 @@
 package com.example.org.controller;
 
+
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +24,7 @@ public class StreamController {
 		this.chatClient = chatClient;
 	}
 	
-	@GetMapping("/hrStream")
+	@GetMapping(value = "/hrStream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
 	public Flux<String> connectWithHR(@RequestParam String message) {
 		return chatClient
 				.prompt()

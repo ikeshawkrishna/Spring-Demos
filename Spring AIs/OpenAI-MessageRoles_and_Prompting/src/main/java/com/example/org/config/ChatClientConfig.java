@@ -2,10 +2,15 @@ package com.example.org.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.ChatMemoryRepository;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
+import org.springframework.ai.chat.memory.repository.jdbc.JdbcChatMemoryRepository;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.openai.api.OpenAiApi.ChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class ChatClientConfig {
@@ -49,4 +54,26 @@ public class ChatClientConfig {
 				.defaultOptions(chatOptions)
 				.build();
 	}
+    
+    /**
+     * JdbcChatMemoryRepository bean will be injected automatically
+     * */
+    @Bean
+    ChatMemory chatMemory(ChatMemoryRepository chatMemoryRepository) {
+    		return MessageWindowChatMemory.builder()
+    				.chatMemoryRepository(chatMemoryRepository)
+    				.maxMessages(30) //Last 30 conversation including the user and assistant will only be stored
+    				.build();
+    }
+    
+    /**
+     * Not needed as JdbcChatMemoryRepository will created when jdbc is used,
+     * not the InMemoryChatMemory Repository
+     * */
+//    @Bean
+//    ChatMemoryRepository chatMemoryRepository(JdbcTemplate jdbcTemplate) {
+//    		return JdbcChatMemoryRepository.builder()
+//    				.jdbcTemplate(jdbcTemplate)
+//    				.build();
+//    }
 }
